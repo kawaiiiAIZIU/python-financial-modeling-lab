@@ -48,19 +48,15 @@ chapter0 = notebook(
 
             > **定位**：这不是完整语法课。我们用一个真实可计算的问题——“钱经过多年会变成多少”——恢复 Python 手感，并建立以后每章都会使用的实验习惯。
 
-            **三条学习线**
-
-            - 金融：本金、收益率、复利和财富路径。
-            - 数学：指数函数、数列、变量与单位。
-            - Python：变量、容器、循环、函数、NumPy、绘图、调试和可复现随机数。
+            本章不会先扔出一串库名。我们从你已经会写的 C 程序出发，每次只比较一个区别：输出、变量、判断、循环和函数。能够读懂基础 Python 后，再进入数组和绘图。
 
             **完成标准**
 
             1. 能读懂并修改本章代码；
-            2. 能说明 Python 列表与 NumPy 数组的区别；
-            3. 能把循环改写为函数和向量化表达；
+            2. 能把一段简单 C 程序改写成 Python；
+            3. 能指出两种语言在类型、括号、缩进和循环写法上的区别；
             4. 能用手算和边界条件检查结果；
-            5. 能完成章末的复利函数练习。
+            5. 在理解基础写法后，再使用数组和绘图完成复利实验。
 
             > 本课程中的收益率均为教学假设，不构成投资建议或收益承诺。
             """
@@ -82,48 +78,183 @@ chapter0 = notebook(
         ),
         md(
             """
-            ## 0.1 实验室检查
+            ## 0.1 第一行Python：先让程序说一句话
 
-            下面只导入前两章需要的基础库。`numpy`负责数组计算，`pandas`负责表格，`matplotlib`负责绘图。
+            在 C 语言中，打印一句话需要包含头文件、`main`函数、分号和返回值：
 
-            **Python提示：导入别名**
+            ```c
+            #include <stdio.h>
 
-            `import numpy as np`表示以后用短名称`np`访问NumPy。这是社区惯例，不是Python语法要求。
+            int main(void) {
+                printf("开始学习Python金融建模！\\n");
+                return 0;
+            }
+            ```
+
+            Python把这些固定结构省略了。同样的任务只写一行：
             """
         ),
         code(
             """
-            import sys
-            import numpy as np
-            import pandas as pd
-            import matplotlib.pyplot as plt
-
-            plt.rcParams["figure.figsize"] = (8, 4.5)
-            plt.rcParams["axes.grid"] = True
-            plt.rcParams["font.sans-serif"] = ["Arial Unicode MS", "PingFang SC", "SimHei", "DejaVu Sans"]
-            plt.rcParams["axes.unicode_minus"] = False
-
-            print({
-                "python": sys.version.split()[0],
-                "numpy": np.__version__,
-                "pandas": pd.__version__,
-            })
+            print("开始学习Python金融建模！")
             """
         ),
         md(
             """
-            ### 运行检查
+            ### 这里先记住三个区别
 
-            如果上一格能打印版本号，基础环境已经可用。若中文图标题显示为方框，不影响计算；可在本机安装中文字体后重新运行。
+            | C语言 | Python |
+            |---|---|
+            | 程序通常从`main`开始 | Notebook代码可以直接执行 |
+            | 语句末尾通常写`;` | 通常不写分号 |
+            | `printf`需要格式说明 | `print`可以直接打印文字或数值 |
 
-            **量化编程警告：Notebook有隐藏状态**
-
-            后运行的单元格可以使用前面创建的变量。若跳着运行，结果可能依赖旧变量。章节完成后必须执行一次 **Restart Kernel and Run All**。
+            先运行上一格。看到文字就说明环境能工作。现在不导入任何数据分析库。
             """
         ),
         md(
             """
-            ## 0.2 第一个问题：1000元会怎样增长？
+            ## 0.2 变量：C先声明类型，Python直接赋值
+
+            假设本金是1000元、年收益率是3%。C语言写法：
+
+            ```c
+            int principal = 1000;
+            double annual_rate = 0.03;
+            double one_year = principal * (1 + annual_rate);
+
+            printf("%.2f\\n", one_year);
+            ```
+
+            Python写法如下。请先找出哪几处符号被省略了。
+            """
+        ),
+        code(
+            """
+            principal = 1000
+            annual_rate = 0.03
+            one_year = principal * (1 + annual_rate)
+
+            print(one_year)
+            print(type(principal), type(annual_rate))
+            """
+        ),
+        md(
+            """
+            ### 区别是什么？
+
+            - C语言在变量名前写`int`、`double`；Python赋值时不写类型。
+            - Python仍然有类型。`type(...)`显示`principal`是整数，`annual_rate`是浮点数。
+            - C的每行以分号结束；Python依靠换行分隔语句。
+            - 两种语言的`+`、`-`、`*`、`/`和圆括号含义基本一致。
+
+            **不要误解**：Python“不写类型”不等于“没有类型”。字符串和数值不能随意相加，错误类型仍会报错。
+            """
+        ),
+        md(
+            """
+            ## 0.3 判断：大括号变成冒号和缩进
+
+            C语言：
+
+            ```c
+            if (annual_rate > 0) {
+                printf("财富会增长\\n");
+            } else {
+                printf("财富不会增长\\n");
+            }
+            ```
+
+            Python：
+            """
+        ),
+        code(
+            """
+            if annual_rate > 0:
+                print("财富会增长")
+            else:
+                print("财富不会增长")
+            """
+        ),
+        md(
+            """
+            Python的条件外面通常不用圆括号，条件后写冒号`:`。属于`if`或`else`的代码必须向右缩进。C语言用大括号划分代码块，Python用缩进划分。
+
+            ### 小修改
+
+            把`annual_rate`暂时改为`0`和`-0.03`，预测并观察输出，然后改回`0.03`。
+            """
+        ),
+        md(
+            """
+            ## 0.4 循环：C自己控制计数，Python遍历一个范围
+
+            C语言：
+
+            ```c
+            for (int year = 1; year <= 3; year++) {
+                printf("第%d年\\n", year);
+            }
+            ```
+
+            Python：
+            """
+        ),
+        code(
+            """
+            for year in range(1, 4):
+                print("第", year, "年")
+            """
+        ),
+        md(
+            """
+            `range(1, 4)`产生1、2、3，**不包含右端点4**。Python没有在这一行写`year++`；每轮循环自动取出下一个数。
+
+            | C的循环组成 | Python中的对应含义 |
+            |---|---|
+            | `int year = 1` | 从`range`的1开始 |
+            | `year <= 3` | 在4之前停止 |
+            | `year++` | 自动取下一个数 |
+            """
+        ),
+        md(
+            """
+            ## 0.5 函数：先给一段计算起名字
+
+            C语言需要声明参数和返回值类型：
+
+            ```c
+            double grow_one_year(double money, double rate) {
+                return money * (1 + rate);
+            }
+            ```
+
+            Python使用`def`定义函数：
+            """
+        ),
+        code(
+            """
+            def grow_one_year(money, rate):
+                return money * (1 + rate)
+
+
+            print(grow_one_year(1000, 0.03))
+            """
+        ),
+        md(
+            """
+            - `def`表示开始定义函数；
+            - 参数放在圆括号中，末尾写冒号；
+            - 函数体缩进；
+            - `return`把结果交还给调用者；
+            - 本例没有写参数类型，但变量仍必须支持乘法和加法。
+
+            到这里为止，只出现了Python自身的基础写法。下面才开始把这些写法组合成一个完整的复利问题。
+            """
+        ),
+        md(
+            """
+            ## 0.6 第一个完整问题：1000元会怎样增长？
 
             假设今天有本金 $P=1000$ 元，每年按固定收益率 $r=3\\%$ 增长，持有 $n=10$ 年，并把每年收益继续投入。
 
@@ -169,9 +300,9 @@ chapter0 = notebook(
         ),
         md(
             """
-            ## 0.3 从C语言循环迁移到Python
+            ## 0.7 用循环观察逐年增长
 
-            循环能显示财富如何逐年变化。Python的`range(years)`产生从0到`years-1`的整数，因此显示年份时使用`year + 1`。
+            现在把前面学过的变量、循环和输出组合起来。这里的`range(years)`产生从0到`years-1`的整数，因此显示年份时使用`year + 1`。
             """
         ),
         code(
@@ -187,10 +318,11 @@ chapter0 = notebook(
         ),
         md(
             """
-            **C/Python对照：循环与容器**
+            **从前面的简单循环多走一步**
 
-            - C语言数组通常需要预先确定长度；Python列表可以用`append`增加元素。
-            - Python用缩进界定循环体，不使用大括号。
+            - `wealth_history = [wealth]`创建一个Python列表，先放入初始财富。
+            - `append`把每一年算出的财富追加到列表末尾。
+            - 循环内部仍然用缩进划分，不使用大括号。
             - `wealth_history[0]`是初始财富，`wealth_history[10]`是第10年末财富。
 
             ### 观察问题
@@ -206,13 +338,15 @@ chapter0 = notebook(
         ),
         md(
             """
-            ## 0.4 列表不等于NumPy数组
+            ## 0.8 从Python列表进入NumPy数组
 
-            这是从C或基础Python进入数据分析时最容易踩的坑之一。运行下面的对照实验前，先预测两个结果是否相同。
+            前面用列表保存逐年财富。进行大量数学计算时，我们还会使用NumPy数组。先不用记住这个库的全部功能，只观察一个关键区别。
             """
         ),
         code(
             """
+            import numpy as np
+
             python_list = [10, 11, 12]
             numpy_array = np.array([10, 11, 12])
 
@@ -240,7 +374,7 @@ chapter0 = notebook(
         ),
         md(
             """
-            ## 0.5 用NumPy把数学公式作用于一整条时间轴
+            ## 0.9 用NumPy把公式作用于整条时间轴
 
             令年份数组为
 
@@ -272,7 +406,7 @@ chapter0 = notebook(
         ),
         md(
             """
-            ## 0.6 把计算封装成函数
+            ## 0.10 把完整计算封装成函数
 
             函数把“输入 → 规则 → 输出”明确写出。金融函数尤其应说明单位、参数范围和假设。
             """
@@ -313,13 +447,20 @@ chapter0 = notebook(
         ),
         md(
             """
-            ## 0.7 可视化：数字如何变成形状
+            ## 0.11 可视化：数字如何变成形状
 
             一张图至少要回答：横轴是什么、纵轴是什么、单位是什么、不同曲线代表什么。
             """
         ),
         code(
             """
+            import matplotlib.pyplot as plt
+
+            plt.rcParams["figure.figsize"] = (8, 4.5)
+            plt.rcParams["axes.grid"] = True
+            plt.rcParams["font.sans-serif"] = ["Arial Unicode MS", "PingFang SC", "SimHei", "DejaVu Sans"]
+            plt.rcParams["axes.unicode_minus"] = False
+
             rates = [0.00, 0.03, 0.08]
             time = np.arange(0, 31)
 
@@ -348,7 +489,7 @@ chapter0 = notebook(
         ),
         md(
             """
-            ## 0.8 参数滑块：自己控制模型
+            ## 0.12 参数滑块：自己控制模型
 
             安装`ipywidgets`后可以拖动收益率和期限。若当前环境没有该库，代码会显示安装提示和一张静态后备图。
             """
@@ -380,7 +521,7 @@ chapter0 = notebook(
         ),
         md(
             """
-            ## 0.9 调试：先读错误，再改代码
+            ## 0.13 调试：先读错误，再改代码
 
             下面故意调用一个不存在的变量。`try/except`让Notebook继续运行，并把异常类型保存为普通文本。
             """
@@ -406,7 +547,7 @@ chapter0 = notebook(
         ),
         md(
             """
-            ## 0.10 练习：定期追加储蓄
+            ## 0.14 练习：定期追加储蓄
 
             每年末追加相同金额时，财富递推为：
 
