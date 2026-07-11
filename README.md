@@ -1,4 +1,4 @@
-# Python金融建模与模拟实验
+<img width="571" height="476" alt="image" src="https://github.com/user-attachments/assets/e340a2ea-a653-48b5-a116-c02b4ccc47fd" /># Python金融建模与模拟实验
 
 这是一套面向上海师范大学 **计算机科学与技术（数智金融）、计算机科学与技术（中法合作）** 专业大一升大二学生设计的课程。根据相关专业培养方案，学生已完成 C 语言程序设计、线性代数和高等数学的学习。本课程涵盖从金融基础、数学模型、量化研究到AI辅助的相关知识。为接下来学习的金融学、概率统计课程提供衔接。
 
@@ -52,3 +52,10 @@ python -m pip install -r requirements.txt
 Yves Hilpisch《Python金融大数据分析》（2015 中文版）；
 王杨（上海师大）线性代数（本科）、统计学（本科）、金融投资分析（本科）；
 朱敏（上海师大）金融时间序列分析（本科）、SAS编程与金融数据处理（本科）；
+傅毅（上海师大）、宋玉平（上海师大）概率论与数理统计（本科）；
+
+## 最后
+总之，欢迎你开始这一次的学习～
+<img width="571" height="476" alt="image" src="https://github.com/user-attachments/assets/5808688d-eca4-4be3-8459-2134c7ae97fb" />
+
+
