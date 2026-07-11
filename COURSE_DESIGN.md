@@ -2,7 +2,9 @@
 
 ## 1. 课程定位
 
-课程暂名：**AI时代的Python量化金融：数学模型、模拟实验与可信研究**。
+课程名称：**Python金融建模与模拟实验**。
+
+副标题：**从金融基础、数学模型到量化研究与AI辅助**。
 
 对象是完成 C 语言、线性代数和高等数学，但没有学习金融、概率统计和计量经济学的本科二年级学生。课程既是金融启蒙课，也是 Python 巩固与进阶课，最终让学生能够完成一项可复现、可解释、不过度承诺的量化研究。
 
@@ -299,4 +301,3 @@
 - FRED数据与API：https://fred.stlouisfed.org/docs/api/fred/
 - scikit-learn时间序列切分：https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html
 - Bailey等，The Probability of Backtest Overfitting：https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2326253
-
