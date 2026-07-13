@@ -1201,8 +1201,8 @@ chapter1 = notebook(
 
 
 for filename, nb in [
-    ("00_Python量化实验室.ipynb", chapter0),
-    ("01_金融量化与Python初体验.ipynb", chapter1),
+    ("00_从c语言到python.ipynb", chapter0),
+    ("01_金融与量化.ipynb", chapter1),
 ]:
     nbf.write(nb, ROOT / filename)
     print(f"wrote {filename}: {len(nb.cells)} cells")
