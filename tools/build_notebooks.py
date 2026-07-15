@@ -1,5 +1,11 @@
-"""Build the first two course notebooks from readable source blocks."""
+"""Legacy baseline builder for chapters 0—1.
 
+The current Notebooks are the source of truth. This file is retained only for
+historical reconstruction and refuses to overwrite them unless an explicit
+destructive flag is supplied.
+"""
+
+import sys
 from pathlib import Path
 from textwrap import dedent
 
@@ -1200,9 +1206,15 @@ chapter1 = notebook(
 )
 
 
-for filename, nb in [
-    ("00_从c语言到python.ipynb", chapter0),
-    ("01_金融与量化.ipynb", chapter1),
-]:
-    nbf.write(nb, ROOT / filename)
-    print(f"wrote {filename}: {len(nb.cells)} cells")
+if __name__ == "__main__":
+    if "--overwrite-current-notebooks" not in sys.argv:
+        raise SystemExit(
+            "已阻止旧版基线脚本覆盖当前Notebook。"
+            "如确需重建旧版，请先备份并显式传入 --overwrite-current-notebooks。"
+        )
+    for filename, nb in [
+        ("00_从c语言到python.ipynb", chapter0),
+        ("01_金融与量化.ipynb", chapter1),
+    ]:
+        nbf.write(nb, ROOT / filename)
+        print(f"wrote {filename}: {len(nb.cells)} cells")
