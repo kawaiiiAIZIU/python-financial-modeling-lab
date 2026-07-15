@@ -1,4 +1,5 @@
-"""Build chapters 6-8."""
+"""Legacy baseline builder for chapters 6—8; current Notebooks are canonical."""
+import sys
 from pathlib import Path
 from textwrap import dedent
 import nbformat as nbf
@@ -483,5 +484,16 @@ md("""
 **底线**：风险是多维的；指标是观察窗口，不是安全证明。
 """)])
 
-for filename,nb in [("06_收益率与财富路径.ipynb",chapter6),("07_概率分布与抽样.ipynb",chapter7),("08_风险度量与压力测试.ipynb",chapter8)]:
-    nbf.write(nb,ROOT/filename); print(f"wrote {filename}: {len(nb.cells)} cells")
+if __name__ == "__main__":
+    if "--overwrite-current-notebooks" not in sys.argv:
+        raise SystemExit(
+            "已阻止旧版基线脚本覆盖当前Notebook。"
+            "如确需重建旧版，请先备份并显式传入 --overwrite-current-notebooks。"
+        )
+    for filename, nb in [
+        ("06_收益率与财富路径.ipynb", chapter6),
+        ("07_概率分布与抽样.ipynb", chapter7),
+        ("08_风险度量与压力测试.ipynb", chapter8),
+    ]:
+        nbf.write(nb, ROOT / filename)
+        print(f"wrote {filename}: {len(nb.cells)} cells")

@@ -1,5 +1,6 @@
-"""Build chapters 2-5 of the interactive finance course."""
+"""Legacy baseline builder for chapters 2—5; current Notebooks are canonical."""
 
+import sys
 from pathlib import Path
 from textwrap import dedent
 
@@ -1087,11 +1088,17 @@ chapter5 = make(
 )
 
 
-for filename, notebook in [
-    ("02_现金流复利与贴现.ipynb", chapter2),
-    ("03_债券与利率风险.ipynb", chapter3),
-    ("04_股票基金与市场交易.ipynb", chapter4),
-    ("05_金融数据与时间边界.ipynb", chapter5),
-]:
-    nbf.write(notebook, ROOT / filename)
-    print(f"wrote {filename}: {len(notebook.cells)} cells")
+if __name__ == "__main__":
+    if "--overwrite-current-notebooks" not in sys.argv:
+        raise SystemExit(
+            "已阻止旧版基线脚本覆盖当前Notebook。"
+            "如确需重建旧版，请先备份并显式传入 --overwrite-current-notebooks。"
+        )
+    for filename, notebook in [
+        ("02_现金流复利与贴现.ipynb", chapter2),
+        ("03_债券与利率风险.ipynb", chapter3),
+        ("04_股票基金与市场交易.ipynb", chapter4),
+        ("05_金融数据与时间边界.ipynb", chapter5),
+    ]:
+        nbf.write(notebook, ROOT / filename)
+        print(f"wrote {filename}: {len(notebook.cells)} cells")
