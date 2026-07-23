@@ -34,26 +34,26 @@ NOTEBOOKS = [
 
 LOCKED_H2 = {
     "01_金融与量化.ipynb": [
-        "1.1 小林的第一个问题：钱为什么会流动？",
-        "1.2 小林把口头承诺画成现金流",
-        "1.3 小林需要一个可以比较的比例",
-        "1.4 小林扩大候选清单：现金、债券、股票、基金",
-        "1.5 小林决定用量化分析约束自己的判断",
-        "1.6 小林第一次面对不确定性：情景不是预测",
-        "1.7 小林把两个情景扩展成许多可能路径",
-        "1.8 小林观看不确定性如何逐年展开",
-        "1.9 小林检查结论是否依赖参数",
-        "1.10 Python练习：帮小林比较自定义情景",
-        "1.11 研究任务：完成小林的第一份比较报告",
+        "1.1 第一个问题：钱为什么会流动？",
+        "1.2 把口头承诺画成现金流",
+        "1.3 用比例比较不同投入",
+        "1.4 扩大候选清单：现金、债券、股票、基金",
+        "1.5 用量化分析约束判断",
+        "1.6 第一次面对不确定性：情景不是预测",
+        "1.7 把两个情景扩展成许多可能路径",
+        "1.8 观察不确定性如何逐年展开",
+        "1.9 检查结论是否依赖参数",
+        "1.10 Python练习：比较自定义情景",
+        "1.11 研究任务：完成第一份比较报告",
     ],
     "02_现金流复利与贴现.ipynb": [
         "2.1 不同时间的钱不能直接相加",
         "2.2 不同的复利频率",
         "2.3 一个小尝试",
-        "2.4 小林寻找项目的盈亏平衡贴现率",
+        "2.4 寻找项目的盈亏平衡贴现率",
         "2.5 金额增长不等于购买力增长",
-        "2.6 小林测试未来学习支出的现值",
-        "2.7 编程练习：为小林实现通用NPV工具",
+        "2.6 测试未来学习支出的现值",
+        "2.7 编程练习：实现通用NPV工具",
         "作业",
     ],
 }
@@ -76,7 +76,15 @@ def h2_headings(nb: nbformat.NotebookNode) -> list[str]:
 
 def validate_notebook(path: Path) -> tuple[nbformat.NotebookNode, dict[str, int]]:
     nb = nbformat.read(path, as_version=4)
-    nbformat.validate(nb)
+    # PyCharm会在已保存输出上附加jetTransient显示字段。它不参与课程内容，
+    # 也不是nbformat标准字段；只在内存副本中移除后做严格结构验证。
+    validation_copy = copy.deepcopy(nb)
+    for cell in validation_copy.cells:
+        if cell.cell_type != "code":
+            continue
+        for output in cell.get("outputs", []):
+            output.pop("jetTransient", None)
+    nbformat.validate(validation_copy)
 
     ids = [cell.get("id") for cell in nb.cells]
     if any(not cell_id for cell_id in ids):
@@ -120,22 +128,22 @@ def validate_notebook(path: Path) -> tuple[nbformat.NotebookNode, dict[str, int]
         "章末整合任务卡",
         "学习目标",
         "**总结**",
-        "总结：小林完成了什么？",
+        "总结：本章完成了什么？",
     )
     markdown_text = "\n".join(source_text(cell) for cell in nb.cells if cell.cell_type == "markdown")
     found_forbidden = [term for term in forbidden_scaffolds if term in markdown_text]
     if found_forbidden:
         raise AssertionError(f"学生页仍含教案式脚手架：{found_forbidden}")
 
-    # 每个知识性H2本身包含短故事，不再另插一个重复单元。
+    # 每个知识性H2本身包含项目情境，不再另插一个重复单元。
     for index, cell in enumerate(nb.cells):
         if cell.cell_type != "markdown" or not H2_RE.search(source_text(cell)):
             continue
         heading = H2_RE.search(source_text(cell)).group(1)
         if cell.get("metadata", {}).get("course_role") != "story_section":
             raise AssertionError(f"二级标题缺少内嵌故事：{heading}")
-        if "小林" not in source_text(cell):
-            raise AssertionError(f"二级标题没有接入小林的事件：{heading}")
+        if len(source_text(cell).strip().splitlines()) < 3:
+            raise AssertionError(f"二级标题缺少内嵌项目情境：{heading}")
 
     navigation_cell = nb.cells[0] if nb.cells else {}
     navigation = source_text(navigation_cell)

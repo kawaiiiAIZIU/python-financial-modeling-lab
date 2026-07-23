@@ -30,81 +30,81 @@ NOTEBOOKS = [
 OPENINGS = {
     "00_从c语言到python.ipynb": """# 第0章 从c语言到python
 
-小林拿到奖学金时很开心。但是，他担心自己把未来的钱算错，所以来找你帮忙。
+这门课从已经学过的高等数学和C语言出发，逐步进入金融与量化。
 
-你已经学过C语言。这一章先把变量、判断、循环和函数换成Python写法。然后，你会用NumPy处理一组数，也会用图形检查结果。
+本章先把变量、判断、循环和函数换成Python写法，再用NumPy处理一组数，并用图形检查结果。
 
 ![C语言经验迁移到Python量化实验流程](assets/course/00_c_to_python_pipeline.png)
 
-这张图只说明步骤，不提供准确数字。最后，你要做出一台能用手算检查的财富计算器。下一章，小林会用它安排自己的10,000元奖学金。""",
+这张图只说明步骤，不提供准确数字。最后，你要做出一台能用手算检查的财富计算器。下一章会用它比较10,000元奖学金的不同安排。""",
     "01_金融与量化.ipynb": """# 第1章 金融与量化
 
-财富计算器已经能运行。小林松了一口气。但是，面对现金、债券、股票和基金时，他又犹豫了：10,000元到底该放在哪里？
+财富计算器已经能运行。现在项目面对一个新的问题：10,000元可以放在现金、债券、股票或基金中，这些选择应当怎样比较？
 
-你们先看钱从谁流向谁。然后，你们把承诺写成现金流，再用Python比较收益和风险。
+先看钱从谁流向谁，再把承诺写成现金流，并用Python比较收益和风险。
 
-![小林从奖学金出发比较金融选择](assets/course/01_financial_choices.png)
+![从奖学金出发比较金融选择](assets/course/01_financial_choices.png)
 
-这张图只说明金融关系，不代表真实收益。最后，你要帮小林写一页资产比较报告。下一章，你们会把不同日期的钱放到同一个时间点比较。""",
+这张图只说明金融关系，不代表真实收益。最后，你要完成一页资产比较报告。下一章会把不同日期的钱放到同一个时间点比较。""",
     "02_现金流复利与贴现.ipynb": """# 第2章 现金流、复利与贴现
 
-小林把今天的10,000元、三年后的12,000元和毕业后的收入写在一张纸上。他看了很久，还是不知道该怎么比。
+把今天的10,000元、三年后的12,000元和毕业后的收入写在一起时，新的问题出现了：不同日期的钱不能直接比较。
 
-你们先用100元、5%和3年做手算。然后，你们学习增长、贴现、通胀和多笔现金流。
+先用100元、5%和3年做手算，再学习增长、贴现、通胀和多笔现金流。
 
 ![增长、贴现与多期现金流的时间价值](assets/course/02_time_value.png)
 
 这张图只说明增长和贴现的方向，不提供准确数字。最后，你要做出一台现金流比较器。第3章会用它给债券定价。""",
     "03_债券与利率风险.ipynb": """# 第3章 债券与利率风险
 
-校园创新社团想向小林借10,000元。负责人递来一份合同，还说会按时付利息。小林有点心动，但是他也担心这份合同没有看上去那么简单。
+校园创新社团提出借款10,000元，并承诺按时支付利息。项目需要判断：这份合同今天值多少钱，利率变化又会带来多大影响？
 
-你们先列出每笔付款。然后，你们算今天的价格，再检查利率变化会带来多大影响。
+先列出每笔付款，再计算今天的价格，并检查利率变化带来的影响。
 
 ![债券现金流、贴现与利率风险关系](assets/course/03_bond_mechanism.png)
 
-这张图只说明合同关系。最后，你要交出一份债券报价和压力测试。下一章，小林会比较债权人和股东。""",
+这张图只说明合同关系，不提供精确数值。最后，你要交出一份债券报价和压力测试。下一章会比较债权人与股东。""",
     "04_股票基金与市场交易.ipynb": """# 第4章 股票、基金与市场交易
 
-第3章结束后，小林第一次准备买股票。他很兴奋，也有点紧张。因为屏幕上的价格不一定是最后的成交价，他不敢马上下单。
+债券分析结束后，项目转向股票。屏幕价格不一定等于最终成交价，因此还需要理解股权、指数、基金和订单簿。
 
-你们先看股东拥有什么。然后，你们建立指数和基金，再走进一个简单的订单簿。
+先看股东拥有什么，再建立指数和基金，最后进入一个简单的订单簿。
 
 ![企业、股票、指数基金与交易市场关系](assets/course/04_market_mechanism.png)
 
 这张图只说明交易关系，不代表真实报价。最后，你要留下一张能说明价差、滑点和费用的虚拟成交记录。下一章会检查这些数据是否可信。""",
     "05_金融数据与时间边界.ipynb": """# 第5章 金融数据与时间边界
 
-第4章结束后，小林下载了一张价格表。开始时，他很高兴。可是，他很快发现了重复日期、空值、拆股和还没有公布的数据，心里马上有些不安。
+项目下载了一张价格表，却发现其中包含重复日期、空值、拆股和尚未公布的数据。整齐的表格并不一定可信。
 
-你们先保存原始表。然后，你们逐项检查问题，并写下每一次删除、填补和对齐的原因。
+先保存原始表，再逐项检查问题，并写下每一次删除、填补和对齐的原因。
 
 ![金融数据从来源到可研究数据的审计流程](assets/course/05_data_pipeline.png)
 
 这张图只说明检查顺序。最后，你要保存原始表、隔离表、清洗表和审计记录。下一章只使用通过检查的数据。""",
     "06_收益率与财富路径.ipynb": """# 第6章 收益率与财富路径
 
-第5章的数据通过检查后，小林以为价格涨跌很好算。但是，股息、复合和追加资金让结果变得不一样。他有点困惑：自己的10,000元到底变成了多少？
+数据通过检查后，价格涨跌看似容易计算；但股息、复合和追加资金会得到不同结果。项目需要说明10,000元究竟怎样变化。
 
-你们先手算100→110→99。然后，你们比较价格收益、总回报、平均数、年化和定投。
+先手算100→110→99，再比较价格收益、总回报、平均数、年化和定投。
 
 ![价格、收益率、复合与财富路径关系](assets/course/06_returns_wealth.png)
 
-这张图不提供收益数字。最后，你要交出一张收益口径卡和一条财富路径。下一章会把一条历史路径变成许多假设情景。""",
+这张图不提供收益数字。最后，你要交出一张收益口径卡和一条财富路径。下一章会把一条历史路径扩展为许多假设情景。""",
     "07_概率分布与抽样.ipynb": """# 第7章 概率、分布与抽样
 
-第6章只记录了一条已经发生的财富路径。小林想知道未来会怎样。他很好奇，也有点担心，因为他不想把一次模拟当成真的预测。
+第6章只记录了一条已经发生的财富路径。为了讨论未来的不确定性，项目需要区分透明假设、随机抽样和事实预测。
 
-你们先写下亏20%、赚5%和赚30%三种结果。然后，你们反复抽样，观察平均数、分位数和尾部怎样变化。
+先写下亏20%、赚5%和赚30%三种结果，再反复抽样，观察平均数、分位数和尾部怎样变化。
 
 ![可能结果、概率模型、抽样与统计量关系](assets/course/07_probability_sampling.png)
 
 这张图只说明模型、抽样和统计量之间的关系。最后，你要交出一份随机实验报告。下一章会用它检查风险。""",
     "08_风险度量与压力测试.ipynb": """# 第8章 风险度量与压力测试
 
-第7章让小林看到许多可能结果。两项方案的平均收益很接近，但是其中一条财富曲线大幅下跌。小林心里一紧，开始怀疑：一个平均数真的够吗？
+第7章展示了许多可能结果。两项方案的平均收益可能接近，但财富路径和失败方式仍然不同，因此只看平均数还不够。
 
-你们先看波动和回撤。然后，你们检查尾部损失、压力情景和杠杆。
+先看波动和回撤，再检查尾部损失、压力情景和杠杆。
 
 ![波动、回撤、尾部、压力与杠杆风险视角](assets/course/08_risk_lenses.png)
 
@@ -165,12 +165,12 @@ URL_RE = re.compile(r"https?://[^\s)>]+")
 NUMBER_RE = re.compile(r"(?<![A-Za-z_])[-+]?\d[\d,]*(?:\.\d+)?%?")
 
 PROJECT_SOURCE_HEADINGS = {
-    "项目交付：小林的债券压力测试": "本章总结与小项目",
-    "项目交付：小林的第一笔虚拟交易": "本章总结与小项目",
+    "项目交付：债券压力测试": "本章总结与小项目",
+    "项目交付：第一笔虚拟交易": "本章总结与小项目",
     "项目交付：把脏数据变成可审计数据": "本章总结与小项目",
     "项目交付：说明10,000元究竟怎样变化": "本章总结与小项目",
-    "项目交付：小林的随机实验报告": "本章总结与小项目",
-    "项目交付：小林的五镜头风险体检": "本章总结与小项目",
+    "项目交付：随机实验报告": "本章总结与小项目",
+    "项目交付：五镜头风险体检": "本章总结与小项目",
 }
 
 DISPLAY_HEADING_RENAMES = {
@@ -337,7 +337,7 @@ def end_sentence(text: str) -> str:
 
 def format_action_sentence(action: str) -> str:
     action = re.sub(r"([，：])先", r"\1", action)
-    return end_sentence(f"动手前，小林这样做：{action}")
+    return end_sentence(f"动手前先做：{action}")
 
 
 def parse_story(source: str) -> tuple[str, str, str, str, str]:
@@ -345,7 +345,7 @@ def parse_story(source: str) -> tuple[str, str, str, str, str]:
     question_match = re.search(r"追问：\*\*(.+?)\*\*", source)
     action_match = re.search(r"动手前：(.+?)(?:。)?核对时：", source)
     hint_match = re.search(r"核对时：(.+?)。", source)
-    boundary_match = re.search(r"小林还在报告旁边注明：(.+?)\s*$", source, re.DOTALL)
+    boundary_match = re.search(r"你还在报告旁边注明：(.+?)\s*$", source, re.DOTALL)
     if not all((prior_match, question_match, action_match, hint_match, boundary_match)):
         raise AssertionError(f"无法读取故事桥：{source[:160]}")
     return (
@@ -358,45 +358,8 @@ def parse_story(source: str) -> tuple[str, str, str, str, str]:
 
 
 def scene_for(chapter: int, heading: str, question: str) -> str:
-    text = heading + question
-    if chapter == 0:
-        return "小林看着新的Python写法有点紧张，因为一个符号写错，结果就会变"
-    if chapter == 5:
-        return "小林看着表格有点不安，因为一条错误记录就可能改变结论"
-    if chapter == 6:
-        if any(word in text for word in ("图", "曲线", "路径")):
-            return "小林盯着财富曲线，既好奇又怕自己看错"
-        return "小林看到几个不同的收益数字，心里有点困惑"
-    if chapter == 7:
-        return "小林对未来很好奇，但是他不想把假设说成事实"
-    if chapter == 8:
-        return "小林看到亏损数字时心里一紧，所以他不想只看一个指标"
-    if any(word in text for word in ("函数", "代码", "编程", "Python", "循环", "数组")):
-        return "小林准备写代码时有点紧张，因为一个顺序写错，结果就会变"
-    if any(word in text for word in ("图", "曲线", "路径", "滑块", "动画")):
-        return "小林盯着图上的变化，既好奇又怕自己看错"
-    if any(word in text for word in ("损失", "风险", "回撤", "VaR", "杠杆", "尾部")):
-        return "小林看到亏损数字时心里一紧，所以他不想只看一个指标"
-    if any(word in text for word in ("数据", "日期", "缺失", "复权", "发布时间", "清洗")):
-        return "小林看着表格有点不安，因为一条错误记录就可能改变结论"
-    if any(word in text for word in ("债券", "合同", "票息", "收益率", "贴现率", "现金流")):
-        return "小林拿着写满数字的合同，有点心动，也有点担心"
-    if any(word in text for word in ("股票", "基金", "指数", "订单", "成交", "股东")):
-        return "小林想继续往下看，但是他担心自己只看到了价格"
-    if any(word in text for word in ("概率", "样本", "期望", "分布", "随机", "情景")):
-        return "小林对未来很好奇，但是他不想把假设说成事实"
-    defaults = {
-        0: "小林对新的Python写法有点陌生，但是他知道C语言经验还能用",
-        1: "小林握着奖学金，既开心又犹豫",
-        2: "小林把不同日期的金额放在一起时有点困惑",
-        3: "小林看着借款合同，不敢只听对方的口头说明",
-        4: "小林第一次准备交易，兴奋中带着一点紧张",
-        5: "小林看到整齐的表格时先放松了，但很快又起了疑心",
-        6: "小林发现几个收益数字不一样，心里有点着急",
-        7: "小林想讨论未来，但是他怕自己说得太肯定",
-        8: "小林想到可能的亏损，心里有些不安",
-    }
-    return defaults[chapter]
+    del chapter, heading, question
+    return ""
 
 
 def make_story_parts_from_spec(chapter: int, heading: str, spec: dict[str, str]) -> tuple[str, str]:
@@ -405,20 +368,17 @@ def make_story_parts_from_spec(chapter: int, heading: str, spec: dict[str, str])
     action = normalize_action(spec["prediction"])
     hint = strip_first(spec["hint"])
     boundary = spec["boundary"].strip().rstrip("。")
-    lead = (
-        f"{scene_for(chapter, heading, question)}。"
-        f"前面留下了一个线索：{prior}。所以，他想先弄清：**{question}**"
-    )
-    action_text = format_action_sentence(action) + end_sentence(f"然后，他按这条提示核对：{hint}")
+    lead = f"已有线索：{prior}。本节要解决：**{question}**"
+    action_text = format_action_sentence(action) + end_sentence(f"核对提示：{hint}")
     negative_words = ("不", "只", "取决于", "假设", "不能", "未", "没有", "并不")
     if "，但" in boundary:
         ending = boundary.replace("，但", "，但是", 1) + "。"
     elif "。" in boundary:
-        ending = f"最后，他把结果和限制记下来：{boundary}。"
+        ending = f"结果与限制：{boundary}。"
     elif any(word in boundary for word in negative_words):
         ending = f"但是，{boundary}。"
     else:
-        ending = f"最后，他把结果记下来：{boundary}。"
+        ending = f"结果记录：{boundary}。"
     return lead, action_text + "\n\n" + ending
 
 
@@ -446,16 +406,16 @@ def simplify_regular_markdown(source: str) -> str:
 
 
 def remove_end_recap(path: Path, heading: str, body: str) -> str:
-    if path.name == "01_金融与量化.ipynb" and heading == "1.11 研究任务：完成小林的第一份比较报告":
+    if path.name == "01_金融与量化.ipynb" and heading == "1.11 研究任务：完成第一份比较报告":
         body = re.sub(
-            r"回到本章开头：小林还是拥有10,000元，但现在已经学会描述现金流、计算收益率、区分资产关系并检查不确定性。从现金、债券、股票和基金中任选三类，为他完成一页观察报告：",
-            "小林还没有决定10,000元该怎么安排。请从现金、债券、股票和基金中任选三类，为他完成一页观察报告：",
+            r"回到本章开头：你还是拥有10,000元，但现在已经学会描述现金流、计算收益率、区分资产关系并检查不确定性。从现金、债券、股票和基金中任选三类，完成一页观察报告：",
+            "你还没有决定10,000元该怎么安排。请从现金、债券、股票和基金中任选三类，完成一页观察报告：",
             body,
         )
     if path.name == "02_现金流复利与贴现.ipynb" and heading == "作业":
         body = re.sub(
-            r"小林从“今天和未来的钱能否直接比较”出发，先学习终值与现值，再检查复利频率，用NPV和IRR分析校园项目，最后区分名义金额与实际购买力。现在请",
-            "小林要把这章的工具放进同一个程序。请",
+            r"你从“今天和未来的钱能否直接比较”出发，先学习终值与现值，再检查复利频率，用NPV和IRR分析校园项目，最后区分名义金额与实际购买力。现在请",
+            "你要把这章的工具放进同一个程序。请",
             body,
         )
     return body
@@ -587,7 +547,7 @@ def transform(path: Path, *, write: bool) -> tuple[int, int]:
 
     removed_ids: set[str] = set()
     for index, cell in enumerate(before_cells):
-        if h2_heading(cell) == "总结：小林完成了什么？":
+        if h2_heading(cell) == "总结：你完成了什么？":
             removed_ids.add(cell.get("id"))
             if index + 1 < len(before_cells):
                 next_cell = before_cells[index + 1]
@@ -628,7 +588,7 @@ def transform(path: Path, *, write: bool) -> tuple[int, int]:
             continue
 
         heading = h2_heading(cell)
-        if heading == "总结：小林完成了什么？":
+        if heading == "总结：你完成了什么？":
             index += 1
             if index < len(before_cells) and before_cells[index].get("metadata", {}).get("course_role") == "story_bridge":
                 index += 1
